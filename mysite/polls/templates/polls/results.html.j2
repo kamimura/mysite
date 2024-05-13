@@ -1,0 +1,9 @@
+{% extends "polls/base.html.j2" %}
+{% block content %}
+<h1>{{question['question_text']}}</h1>
+<ul>
+{% for choice in choices  %}
+<li>{{choice['choice_text']}} -- {{choice['votes']}}票</li>
+{% endfor %}
+</ul>
+{% endblock content %}

@@ -1,0 +1,1 @@
+document.getElementById('danger').onclick = () => confirm('本当に削除しますか？')

@@ -1,0 +1,20 @@
+{% extends "polls/base.html.j2" %}
+{% block content %}
+<form method="post" action="{{url_for('polls.vote', question_id = question['id'])}}">
+<input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+<fieldset>
+<legend>
+{{question['question_text']}}
+</legend>
+{% if error_message %}
+<p><strong>{{error_message}}</strong></p>
+{% endif %}
+{% for choice in choices  %}
+  <input type="radio" id="choice{{loop.index}}" name="choice" value="{{choice['id']}}">
+  <label for="choice{{loop.index}}">{{choice['choice_text']}}</label>
+  <br>
+{% endfor %}
+<input type="submit" value="投票">
+</fieldset>
+</form>
+{% endblock content %}

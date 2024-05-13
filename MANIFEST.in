@@ -1,0 +1,4 @@
+graft mysite/*/static
+graft mysite/*/templates
+global-exclude *.py[cod]$ {2:.DS_Store}
+include mysite/*/schema.sql

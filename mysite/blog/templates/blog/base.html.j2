@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<head>
+<title>{% block title %}{% endblock title %}</title>
+<link rel="stylesheet" href="{{url_for('blog.static', filename='style.css')}}">
+</head>
+<body>
+    <nav>
+    <h1>ブログ</h1>
+        <ul>
+            {% if g.user %}
+            <li><span>{{g.user['username']}}</span></li>
+            <li><a href="{{url_for('blog.auth.logout')}}">ログアウト</a></li>
+            {% else %}
+            <li><a href="{{ url_for('blog.auth.register') }}">登録</a></li>
+            <li><a href="{{ url_for('blog.auth.login')}}">ログイン</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+    <section class="content">
+    <header>
+    {% block header %}
+    
+    {% endblock header %}
+    </header>
+    {% for message in get_flashed_messages() %}
+    <div class="flash">{{message}}</div>
+    {% endfor %}
+
+    {% block content %}
+    {% endblock %}
+
+    {% block javascript %}
+    
+    {% endblock javascript %}
+</body>
